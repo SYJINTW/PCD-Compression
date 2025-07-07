@@ -1,3 +1,8 @@
+"""
+python compress_ply_bz2.py \
+--input /Users/syjintw/Desktop/NUS/pcd_compression/PCD-Compression/dataset/results/Output/rb2_1/cube/mv/frame1 \
+--output /Users/syjintw/Desktop/NUS/pcd_compression/PCD-Compression/dataset/results/compressed/rb2_1/cube/mv/frame1
+"""
 from plyfile import PlyData, PlyElement
 from pathlib import Path
 import argparse
@@ -9,6 +14,7 @@ def compress_and_move(input_path, output_dir):
     bz2_path = input_path.parent/f"{input_path.name}.bz2"
     os.system(f"bzip2 -k {input_path}")
     os.system(f"mv {bz2_path} {output_dir}")
+    
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Change the position (x, y, z) from float64 (double) to float32 (float).")
@@ -23,7 +29,7 @@ if __name__ == "__main__":
     output_dir = Path(f"{args.output}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    for input_path in input_dir.glob("*.ply"):
+    for input_path in input_dir.glob("*"):
         compress_and_move(input_path, output_dir)
 
 # # Load the original PLY file (binary or ascii)
