@@ -3,18 +3,18 @@ import numpy as np
 import pandas as pd
 import os
 
-RAW_DIR = "/Users/syjintw/Desktop/NUS/pcd_compression/PCD-Compression/dataset/results/Output"
-COMPRESSED_DIR = "/Users/syjintw/Desktop/NUS/pcd_compression/PCD-Compression/dataset/results/compress"
-SAVE_PATH = "/Users/syjintw/Desktop/NUS/pcd_compression/PCD-Compression/dataset/results/csv/size.csv"
+RAW_DIR = "/mnt/data1/syjintw/point_cloud_compression/output_data"
+COMPRESSED_DIR = "/mnt/data1/syjintw/point_cloud_compression/output_data_compress"
+SAVE_PATH = "/mnt/data1/syjintw/point_cloud_compression/results/csv/all_cube_gof2_tf12_size.csv"
 (Path(SAVE_PATH).parent).mkdir(parents=True, exist_ok=True)
 
 if __name__ == "__main__":
-    dataset_names = ["redandblack"] # ["redandblack"]
-    dataset_abbrs = ["rb"] # ["rb"]
-    methods = ["ours", "cube", "p2p"] # ["ours", "cube", "p2p"]
-    gofs = [2] # [2]
-    groups = [1, 2] # [1]
-    frames = [1] # [1]
+    dataset_names = ["longdress", "loot", "redandblack", "soldier"] # ["longdress", "loot", "redandblack", "soldier"]
+    dataset_abbrs = ["ld", "loot", "rb", "sol"] # ["ld", "loot", "rb", "sol"]
+    methods = ["cube"] # ["ours", "cube", "p2p"]
+    gofs = [2] # [2] / [3]
+    groups = [1, 2, 3, 4, 5, 6] # [1, 2, 3, 4, 5, 6] / [1, 2, 3, 4]
+    frames = [1] # [1] / [1, 2]
     
     results = [] # [["dataset_name", "method", "gof", "group", "frame", "step", "raw_size", "compressed_size"]]
     for dataset_name, dataset_abbr in zip(dataset_names, dataset_abbrs):
